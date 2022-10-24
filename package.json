@@ -1,0 +1,44 @@
+{
+  "name": "leaders-mentor",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "yarn add -D eslint prettier npx install-peerdeps --dev eslint-config-airbnb-base yarn add -D eslint-config-prettier eslint-plugin-prettier"
+  },
+  "dependencies": {
+ 
+    "@vitejs/plugin-react": "^2.1.0",
+    "daisyui": "^2.31.0",
+
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.2",
+    "react-toastify": "^9.0.8",
+
+    "vite": "^3.1.0",
+    "vite-plugin-eslint": "^1.8.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.1.0",
+    "autoprefixer": "^10.4.12",
+    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "postcss": "^8.4.17",
+    "prettier": "^2.7.1",
+    "tailwindcss": "^3.1.8",
+    "vite": "^3.1.0",
+    "vite-plugin-eslint": "^1.8.1"
+  }
+}
