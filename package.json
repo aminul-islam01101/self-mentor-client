@@ -10,15 +10,13 @@
     "lint": "yarn add -D eslint prettier npx install-peerdeps --dev eslint-config-airbnb-base yarn add -D eslint-config-prettier eslint-plugin-prettier"
   },
   "dependencies": {
- 
     "@vitejs/plugin-react": "^2.1.0",
     "daisyui": "^2.31.0",
-
+    "firebase": "^9.12.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.2",
     "react-toastify": "^9.0.8",
-
     "vite": "^3.1.0",
     "vite-plugin-eslint": "^1.8.1"
   },
