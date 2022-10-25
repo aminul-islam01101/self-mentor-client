@@ -4,15 +4,15 @@ import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 
 const Root = () => {
-    console.log('something');
- 
-
+    console.log('some');
 
     return (
         <div className="flex flex-col justify-between min-h-screen">
             <div>
                 <Navbar />
-                <Outlet />
+                <div className="container">
+                    <Outlet />
+                </div>
             </div>
             <Footer />
         </div>
