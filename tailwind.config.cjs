@@ -1,4 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const daisyPlugin = require('daisyui');
+const Form = require('@tailwindcss/forms');
 
 module.exports = {
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
@@ -24,7 +26,7 @@ module.exports = {
             },
         },
     },
-    plugins: [daisyPlugin],
+    plugins: [daisyPlugin, Form],
     daisyui: {
         styled: true,
         themes: false,

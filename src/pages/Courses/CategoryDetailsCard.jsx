@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const CategoryDetailsCard = ({id}) => (
+const CategoryDetailsCard = ({ id }) => (
     <div>
         <div className="card w-full glass h-full">
             <figure>

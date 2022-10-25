@@ -6,6 +6,7 @@ import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
 import Courses from '../pages/Courses/Courses';
 import Root from './Root';
+import ProtectedRoute from './ProtectedRoute';
 
 import Faq from '../pages/Home/Faq';
 import Blogs from '../pages/Blogs/Blogs';
@@ -39,7 +40,11 @@ const router = createBrowserRouter(
             />
             <Route
                 path="/purchase/:id"
-                element={<CoursePurchase />}
+                element={
+                    <ProtectedRoute>
+                        <CoursePurchase />
+                    </ProtectedRoute>
+                }
                 loader={async ({ params }) =>
                     fetch(`https://self-mentor-server.vercel.app/course/${params.id}`)
                 }
