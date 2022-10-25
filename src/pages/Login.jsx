@@ -12,7 +12,8 @@ const Login = () => {
         password: '',
     });
 
-    const { signIn, sendPassResetEmail, setLoading, googleSignIn } = useContext(AuthContext);
+    const { signIn, sendPassResetEmail, setLoading, googleSignIn, githubSignIn } =
+        useContext(AuthContext);
     const { email, password } = input;
     const navigate = useNavigate();
     const location = useLocation();
@@ -63,6 +64,22 @@ const Login = () => {
                 console.log(user, user.emailVerified, user.uid);
 
                 user.emailVerified && navigate(from, { replace: true });
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    };
+    // handle github sign in
+    const handleGithubSignIn = () => {
+        githubSignIn()
+            .then((result) => {
+                const { user } = result;
+                console.log(user, user.emailVerified, user.uid);
+
+                user?.uid && navigate(from, { replace: true });
             })
             .catch((error) => {
                 console.error(error);
@@ -145,6 +162,7 @@ const Login = () => {
                         <FaTwitter />
                     </button>
                     <button
+                        onClick={handleGithubSignIn}
                         type="button"
                         aria-label="Log in with GitHub"
                         className="rounded-sm p-3"

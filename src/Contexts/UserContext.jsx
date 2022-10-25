@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import {
     createUserWithEmailAndPassword,
+    GithubAuthProvider,
     GoogleAuthProvider,
     onAuthStateChanged,
     sendEmailVerification,
@@ -51,6 +52,9 @@ const UserContext = ({ children }) => {
 
             if (firebaseUser?.emailVerified) {
                 setUser(firebaseUser);
+            }
+            if (firebaseUser.providerData[0].providerId === 'github.com') {
+                setUser(firebaseUser);
             } else {
                 setUser(null);
             }
@@ -62,11 +66,13 @@ const UserContext = ({ children }) => {
     }, []);
 
     // google authentication
-    const provider = new GoogleAuthProvider();
+    const googleProvider = new GoogleAuthProvider();
     const googleSignIn = () => {
         setLoading(true);
-        return signInWithPopup(auth, provider);
+        return signInWithPopup(auth, googleProvider);
     };
+    const githubProvider = new GithubAuthProvider();
+    const githubSignIn = () => signInWithPopup(auth, githubProvider);
 
     // const value = useMemo(() => ({ authInfo }), []) as UserValue;
     return (
@@ -82,6 +88,8 @@ const UserContext = ({ children }) => {
                 sendPassResetEmail,
                 updateUserProfile,
                 googleSignIn,
+                githubSignIn,
+                setUser,
             }}
         >
             {children}

@@ -10,7 +10,7 @@ import AuthContext from '../Contexts/AuthContext';
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { logOut, user, setLoading } = useContext(AuthContext);
+    const { logOut, user, setUser, setLoading } = useContext(AuthContext);
     const [theme, setTheme] = useState(null);
     const pages = [
         { pageName: 'Home', link: '/home', id: 1 },
@@ -18,17 +18,21 @@ const Navbar = () => {
         { pageName: 'FAQ', link: '/faq', id: 3 },
         { pageName: 'Blogs', link: '/blogs', id: 4 },
     ];
+
+
     const handleClick = () => {
         logOut()
             .then(() => {
                 toast.success('Sign-out successful.');
                 setLoading(false);
+                setUser(null);
                 navigate('/');
             })
             .catch((er) => {
                 console.error(er);
             });
     };
+    console.log(user);
     // handling dark mode light mode
     useEffect(() => {
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
