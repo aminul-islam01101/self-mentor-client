@@ -8,7 +8,7 @@ import Logo from '../assets/images/logo.png';
 const Navbar = () => {
     const pages = [
         { pageName: 'Home', link: '/home', id: 1 },
-        { pageName: 'Courses', link: '/course', id: 2 },
+        { pageName: 'Courses', link: '/courses', id: 2 },
         { pageName: 'FAQ', link: '/faq', id: 3 },
         { pageName: 'Blogs', link: '/blogs', id: 4 },
     ];

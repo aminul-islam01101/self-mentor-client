@@ -6,9 +6,10 @@ import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
 import Courses from '../pages/Courses/Courses';
 import Root from './Root';
-import ProtectedRoute from './ProtectedRoute';
+
 import Faq from '../pages/Home/Faq';
 import Blogs from '../pages/Blogs/Blogs';
+import CourseCategory from '../pages/Courses/CourseCategory';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -18,15 +19,15 @@ const router = createBrowserRouter(
             {/* <Route path="/shop" element={<Shop />} />
             <Route path="/shop/:shopId" element={<ProductDetails />} /> */}
 
-            <Route
-                path="/course"
-                element={
-                    <ProtectedRoute>
-                        <Courses />
-                    </ProtectedRoute>
-                }
-            />
-
+            <Route path="/courses" element={<Courses />}>
+                <Route
+                    path="/courses/:id"
+                    element={<CourseCategory />}
+                    loader={async ({ params }) =>
+                        fetch(`https://self-mentor-server.vercel.app/category/${params.id}`)
+                    }
+                />
+            </Route>
             <Route path="/faq" element={<Faq />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/login" element={<Login />} />
