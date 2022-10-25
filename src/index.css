@@ -13,7 +13,7 @@
         font-size: 0.8rem;
     }
     body {
-        @apply bg-slate-400;
+        @apply bg-slate-400 dark:bg-slate-200;
     }
     .color-primary {
         @apply bg-[#2558ff];

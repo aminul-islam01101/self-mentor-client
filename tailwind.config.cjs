@@ -4,6 +4,7 @@ const Form = require('@tailwindcss/forms');
 
 module.exports = {
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+    darkMode: 'class',
     theme: {
         extend: {
             width: {
