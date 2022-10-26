@@ -41,7 +41,7 @@ const router = createBrowserRouter(
                 />
             </Route>
             <Route
-                path="/course-details/:_id"
+                path="/course-details/:id"
                 element={<CourseDetails />}
                 loader={async ({ params }) =>
                     fetch(`https://self-mentor-server.vercel.app/course/${params._id}`)
