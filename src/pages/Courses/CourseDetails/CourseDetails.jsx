@@ -23,11 +23,11 @@ const CourseDetails = () => {
         totalEnrolled,
         ratings: { point, ratingsGiven },
         stats: { hours, lectures, level, tags },
-        author: { name, published_date, LastUpdated, img },
+        author: { name, published_date, LastUpdated, },
         image_url,
         details_1,
         details_2,
-        price,
+       
         keywords,
         language,
         bullets,

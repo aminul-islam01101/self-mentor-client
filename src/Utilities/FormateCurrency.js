@@ -4,5 +4,7 @@ const currencyFormatter = new Intl.NumberFormat(undefined, {
 });
 
 export default function formatCurrency(number) {
-    return currencyFormatter.format(number);
+    const parsedNumber = parseFloat(number);
+    
+    return currencyFormatter.format(parsedNumber);
 }
