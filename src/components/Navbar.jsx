@@ -19,7 +19,6 @@ const Navbar = () => {
         { pageName: 'Blogs', link: '/blogs', id: 4 },
     ];
 
-
     const handleClick = () => {
         logOut()
             .then(() => {

@@ -50,12 +50,16 @@ const UserContext = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
             console.log(firebaseUser);
 
-            if (firebaseUser?.emailVerified) {
+            if (
+                firebaseUser?.emailVerified ||
+                (firebaseUser?.providerData[0]?.providerId === 'github.com' && firebaseUser?.uid)
+            ) {
                 setUser(firebaseUser);
             }
-            if (firebaseUser.providerData[0].providerId === 'github.com') {
-                setUser(firebaseUser);
-            } else {
+            // if (firebaseUser.providerData[0].providerId === 'github.com') {
+            //     setUser(firebaseUser);
+            // }
+            else {
                 setUser(null);
             }
 

@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const CourseDetails = () => {
-    console.log('hello');
+    const { id } = useParams();
+    console.log(id);
 
     return (
         <div>
             <p>hello</p>
-            <Link to={`/purchase/${'0282e0e58a5c404fbd15261f11c2ab6a'}}`}>
+            <Link to={`/purchase/${id}`}>
                 <button type="button" className="button">
                     purchase
                 </button>
