@@ -3,10 +3,15 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext } from 'react';
-import { AiTwotoneStar } from 'react-icons/ai';
+import { AiTwotoneStar, AiOutlineDownload } from 'react-icons/ai';
 import { BsCalendar2Date } from 'react-icons/bs';
+import { TiTickOutline } from 'react-icons/ti';
+
 import { Link, useParams } from 'react-router-dom';
+import Pdf from 'react-to-pdf';
 import AuthContext from '../../../Contexts/AuthContext';
+
+const ref = React.createRef();
 
 const CourseDetails = () => {
     const { id } = useParams();
@@ -25,12 +30,13 @@ const CourseDetails = () => {
         price,
         keywords,
         language,
+        bullets,
     } = singleCourseData;
 
     return (
         <div>
             <div>
-                <div className="relative flex flex-col max-w-xl p-6 divide-y xl:flex-row xl:divide-y-0 xl:divide-x dark:bg-gray-900 dark:text-gray-100 divide-gray-700">
+                <div className="relative flex flex-col max-w-7xl p-6 divide-y  dark:bg-gray-900 dark:text-gray-100 divide-gray-700">
                     <div className="p-3 space-y-1 xl:ml-6">
                         <figure>
                             <img src={image_url} alt="" />
@@ -79,23 +85,61 @@ const CourseDetails = () => {
                             </div>
                             <div className="flex flex-wrap space-x-3">
                                 {keywords.map((keyword) => (
-                                    <span className="inline-block px-2 py-1 text-sm font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900">
+                                    <span
+                                        key={Math.random()}
+                                        className="inline-block px-2 py-1 text-sm font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900"
+                                    >
                                         {keyword}
                                     </span>
                                 ))}
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-between">
-                        <h4 className="text-xl font-bol mt-5 pt-5"> About Course</h4>
+                    <div className="flex justify-between mt-10 p-6 items-center">
+                        <h4 className="text-xl font-bol "> About Course</h4>
+                        <div>
+                            <Pdf targetRef={ref} filename="code-example.pdf">
+                                {({ toPdf }) => (
+                                    <button type="button" onClick={toPdf}>
+                                        <div className="flex items-center gap-2">
+                                            <AiOutlineDownload /> Course summery
+                                        </div>
+                                    </button>
+                                )}
+                            </Pdf>
+                        </div>
+                    </div>
+                    {/* course description */}
+                    <div className="p-6" ref={ref}>
+                        <h4>At a Glance</h4>
+
+                        <p className="p-10">{details_1}</p>
+                        <h4 className="text-xl font-bol "> What You Will learn</h4>
+                        <div className="p-7">
+                            {bullets.map((bullet) => (
+                                <li className="list-none" key={Math.random()}>
+                                    <div className="flex gap-2 items-center ">
+                                        <TiTickOutline />
+                                        {bullet}
+                                    </div>
+                                </li>
+                            ))}
+                        </div>
+                        <p className="p-10">{details_2}</p>
+                    </div>
+                    <div className="flex flex-col items-center p-20">
+                        <Link to={`/purchase/${id}`}>
+                            <button type="button" className="button px-36 block">
+                                Get Premium access
+                            </button>
+                        </Link>
+                        <div className="flex gap-10 ">
+                            <small className="">* Lifetime access</small>
+                            <small className="">* 30 days Money back access</small>
+                        </div>
                     </div>
                 </div>
             </div>
-            <Link to={`/purchase/${id}`}>
-                <button type="button" className="button">
-                    purchase
-                </button>
-            </Link>
         </div>
     );
 };
