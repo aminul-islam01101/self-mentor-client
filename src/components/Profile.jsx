@@ -32,7 +32,7 @@ const Profile = () => {
 
         setInput({ ...input, [event.target.name]: value });
     };
-    const { email, names, photoURL, phoneNumber } = input;
+    const { names, photoURL, phoneNumber } = input;
 
     // verifyMail functionality
 
@@ -106,6 +106,20 @@ const Profile = () => {
                         className="ng-untouched ng-pristine ng-valid space-y-6"
                     >
                         <div className="space-y-1 text-sm">
+                            <label htmlFor="email" className="block dark:dark:text-gray-400">
+                                email
+                                <input
+                                    defaultValue={user.email}
+                                    readOnly
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    placeholder="write your email"
+                                    className="w-full rounded-md px-4 py-3 dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
+                                />
+                            </label>
+                        </div>
+                        <div className="space-y-1 text-sm">
                             <label htmlFor="names" className="block dark:dark:text-gray-400">
                                 Names
                                 <input
@@ -139,21 +153,6 @@ const Profile = () => {
                                     id="phoneNumber"
                                     placeholder="write your Phone Number"
                                     className="w-full rounded-md px-4 py-3 dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
-                                />
-                            </label>
-                        </div>
-
-                        <div className="space-y-1 text-sm">
-                            <label htmlFor="email" className="block dark:dark:text-gray-400">
-                                email
-                                <input
-                                    value={email}
-                                    type="email"
-                                    name="email"
-                                    id="email"
-                                    placeholder="write your email"
-                                    className="w-full rounded-md px-4 py-3 dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
-                                    onChange={onFieldChange}
                                 />
                             </label>
                         </div>

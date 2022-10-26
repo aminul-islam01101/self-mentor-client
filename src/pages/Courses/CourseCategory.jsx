@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -13,12 +14,14 @@ const Aside = () => {
     return (
         <aside>
             <h4>All Category: {categories.length}</h4>
-            <div>
-                {categories.map((category) => (
-                    <p key={category.id}>
-                        <Link to={`/courses/category/${category.id}`}>{category.name}</Link>
-                    </p>
-                ))}
+            <div className="grid grid-cols-[1fr_3fr]">
+                <div>
+                    {categories.map((category) => (
+                        <p key={category.id}>
+                            <Link to={`/courses/category/${category.id}`}>{category.name}</Link>
+                        </p>
+                    ))}
+                </div>
             </div>
         </aside>
     );

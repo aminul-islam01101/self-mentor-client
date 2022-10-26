@@ -4,12 +4,12 @@ import { useLoaderData } from 'react-router-dom';
 import CategoryDetailsCard from './CategoryDetailsCard';
 
 const CourseCategory = () => {
-    const dataNew = useLoaderData();
-    console.log(dataNew);
+    const categoriesData = useLoaderData();
+
     return (
         <div className="grid grid-cols-2 gap-5 p-5">
-            {dataNew.map((item) => (
-                <CategoryDetailsCard key={item._id} id={item._id} />
+            {categoriesData.map((item) => (
+                <CategoryDetailsCard key={item._id} singleCourseData={item} />
             ))}
         </div>
     );

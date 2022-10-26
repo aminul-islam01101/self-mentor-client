@@ -12,6 +12,7 @@ import {
     updateProfile,
 } from 'firebase/auth';
 import { useEffect, useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import auth from '../configs/firebase.config';
 
 import AuthContext from './AuthContext';
@@ -20,6 +21,7 @@ const UserContext = ({ children }) => {
     // hooks
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const allCoursesData = useLoaderData();
 
     // create user functionality
     const createUser = (email, password) => {
@@ -51,8 +53,6 @@ const UserContext = ({ children }) => {
     // useEffect observer
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-            console.log(firebaseUser);
-
             if (
                 firebaseUser?.emailVerified ||
                 (firebaseUser?.providerData[0]?.providerId === 'github.com' && firebaseUser?.uid)
@@ -97,6 +97,7 @@ const UserContext = ({ children }) => {
                 googleSignIn,
                 githubSignIn,
                 setUser,
+                allCoursesData,
             }}
         >
             {children}
