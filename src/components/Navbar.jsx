@@ -31,7 +31,7 @@ const Navbar = () => {
                 console.error(er);
             });
     };
-    console.log(user?.photoURL);
+ 
     // handling dark mode light mode
     useEffect(() => {
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {

@@ -14,7 +14,7 @@ const SignUp = () => {
         email: '',
         password: '',
         confirmPassword: '',
-     
+
         checked: false,
     });
     const [error, setError] = useState(null);
@@ -29,7 +29,7 @@ const SignUp = () => {
 
         setInput({ ...input, [event.target.name]: value });
     };
-    const { names, email, password, confirmPassword, photoUrl } = input;
+    const { names, email, password, confirmPassword } = input;
 
     // verifyMail functionality
     const handleVerifyMail = () => {
@@ -38,10 +38,9 @@ const SignUp = () => {
             .catch((e) => console.error(e));
     };
     // updateUserProfile functionality
-    const handleUpdateProfile = (name, pUrl) => {
+    const handleUpdateProfile = () => {
         const profile = {
-            displayName: name,
-            photoURL: pUrl,
+            displayName: names,
         };
         updateUserProfile(profile)
             .then(() => {})
@@ -79,7 +78,7 @@ const SignUp = () => {
                 form.reset();
                 handleVerifyMail();
                 toast.success('please verifyMail');
-                handleUpdateProfile(names, photoUrl);
+                handleUpdateProfile();
             })
             .catch((err) => console.error(err));
     };
@@ -99,11 +98,11 @@ const SignUp = () => {
                                 id="names"
                                 placeholder="write your name"
                                 className="w-full rounded-md px-4 py-3 dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
-                                required
+                                
                             />
                         </label>
                     </div>
-                   
+
                     <div className="space-y-1 text-sm">
                         <label htmlFor="email" className="block dark:dark:text-gray-400">
                             email

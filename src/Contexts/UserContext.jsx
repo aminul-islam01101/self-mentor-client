@@ -43,7 +43,10 @@ const UserContext = ({ children }) => {
     const sendPassResetEmail = (email) => sendPasswordResetEmail(auth, email);
 
     // update profile functionality
-    const updateUserProfile = (profile) => updateProfile(auth.currentUser, profile);
+    const updateUserProfile = (profile) => {
+        setLoading(true);
+        return updateProfile(auth.currentUser, profile);
+    };
 
     // useEffect observer
     useEffect(() => {
