@@ -61,7 +61,6 @@ const Login = () => {
         googleSignIn()
             .then((result) => {
                 const { user } = result;
-                console.log(user, user.emailVerified, user.uid);
 
                 user.emailVerified && navigate(from, { replace: true });
             })

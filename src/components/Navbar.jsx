@@ -31,7 +31,7 @@ const Navbar = () => {
                 console.error(er);
             });
     };
-    console.log(user);
+    console.log(user?.photoURL);
     // handling dark mode light mode
     useEffect(() => {
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -129,35 +129,17 @@ const Navbar = () => {
                             </Link>
                         </div>
                     )}
-                    <div className="dropdown dropdown-end">
+
+                    <Link to="/profile">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-8 rounded-full">
-                                <img src={Avatar} alt="img" />
+                                <img src={user?.photoURL || Avatar} alt="img" />
                             </div>
                         </label>
+                    </Link>
 
-                        {/* ----------------------------- */}
+                    {/* ----------------------------- */}
 
-                        <ul
-                            tabIndex={0}
-                            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-                        >
-                            <li>
-                                <Link to="/login" className="justify-between flex sm:hidden">
-                                    Login
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/signup" className="justify-between">
-                                    Signup
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link to="/home">Logout</Link>
-                            </li>
-                        </ul>
-                    </div>
                     {/* dark mood toggler */}
                     <div
                         className="tooltip hover:tooltip-open tooltip-bottom tooltip-success"

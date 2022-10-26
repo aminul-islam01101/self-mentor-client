@@ -3,22 +3,23 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { FaFacebook, FaGithub, FaGoogle, FaTwitter } from 'react-icons/fa';
+
 import { Link } from 'react-router-dom';
 import AuthContext from '../Contexts/AuthContext';
 
-const SignUp = () => {
+const Profile = () => {
     //! Hooks
     const [input, setInput] = useState({
         names: '',
         email: '',
-        password: '',
-        confirmPassword: '',
-     
+        phoneNumber: null,
+
+        photoURL: '',
         checked: false,
     });
+    // eslint-disable-next-line no-unused-vars
     const [error, setError] = useState(null);
-    const { createUser, verifyMail, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
 
     // Input field onChange event handler
     const onFieldChange = (event) => {
@@ -29,19 +30,16 @@ const SignUp = () => {
 
         setInput({ ...input, [event.target.name]: value });
     };
-    const { names, email, password, confirmPassword, photoUrl } = input;
+    const { names, email, password, photoURL, phoneNumber } = input;
 
     // verifyMail functionality
-    const handleVerifyMail = () => {
-        verifyMail()
-            .then(() => {})
-            .catch((e) => console.error(e));
-    };
+
     // updateUserProfile functionality
-    const handleUpdateProfile = (name, pUrl) => {
+    const handleUpdateProfile = () => {
         const profile = {
-            displayName: name,
-            photoURL: pUrl,
+            displayName: names,
+            photoURL,
+            phoneNumber,
         };
         updateUserProfile(profile)
             .then(() => {})
@@ -55,31 +53,15 @@ const SignUp = () => {
 
         // password validation
 
-        if (password.length < 6) {
-            setError('password must be 6 ch');
-            alert('password must be 6 ch');
-
-            return;
-        }
-        if (password !== confirmPassword) {
-            setError('password did not match');
-            alert('pass not match');
-
-            return;
-        }
-
-        setError('signed up successfully');
-        alert('signed up successfully');
-
         // createUser functionality
         createUser(email, password)
             .then((result) => {
                 const { user } = result;
                 console.log(user);
                 form.reset();
-                handleVerifyMail();
-                toast.success('please verifyMail');
-                handleUpdateProfile(names, photoUrl);
+
+                handleUpdateProfile(names, photoURL);
+                toast.success('Profile updated successfully');
             })
             .catch((err) => console.error(err));
     };
@@ -99,11 +81,34 @@ const SignUp = () => {
                                 id="names"
                                 placeholder="write your name"
                                 className="w-full rounded-md px-4 py-3 dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
-                                required
                             />
                         </label>
                     </div>
-                   
+                    <div className="space-y-1 text-sm">
+                        <label htmlFor="names" className="block dark:dark:text-gray-400">
+                            Phone Number
+                            <input
+                                type="number"
+                                onChange={onFieldChange}
+                                name="phoneNumber"
+                                id="phoneNumber"
+                                placeholder="write your Phone Number"
+                                className="w-full rounded-md px-4 py-3 dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
+                            />
+                        </label>
+                    </div>
+                    <div className="space-y-1 text-sm">
+                        <label htmlFor="photoUrl" className="block dark:dark:text-gray-400">
+                            Photo Url
+                            <input
+                                onChange={onFieldChange}
+                                name="photoUrl"
+                                id="photoUrl"
+                                placeholder="place your photoUrl"
+                                className="w-full rounded-md px-4 py-3 dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
+                            />
+                        </label>
+                    </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="email" className="block dark:dark:text-gray-400">
                             email
@@ -112,34 +117,6 @@ const SignUp = () => {
                                 name="email"
                                 id="email"
                                 placeholder="write your email"
-                                className="w-full rounded-md px-4 py-3 dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
-                                required
-                                onChange={onFieldChange}
-                            />
-                        </label>
-                    </div>
-                    <div className="space-y-1 text-sm">
-                        <label htmlFor="password" className="block dark:dark:text-gray-400">
-                            Password
-                            <input
-                                type="password"
-                                name="password"
-                                id="password"
-                                placeholder="write Password"
-                                className="w-full rounded-md px-4 py-3 dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
-                                required
-                                onChange={onFieldChange}
-                            />
-                        </label>
-                    </div>
-                    <div className="space-y-1 text-sm">
-                        <label htmlFor="confirmPassword" className="block dark:dark:text-gray-400">
-                            Confirm Password
-                            <input
-                                type="password"
-                                name="confirmPassword"
-                                id="confirmPassword"
-                                placeholder="Confirm Password"
                                 className="w-full rounded-md px-4 py-3 dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
                                 required
                                 onChange={onFieldChange}
@@ -165,43 +142,7 @@ const SignUp = () => {
                         Sign up
                     </button>
                 </form>
-                <div className="flex items-center space-x-1 pt-4">
-                    <div className="h-px flex-1 dark:dark:bg-gray-700 sm:w-16" />
-                    <p className="px-3 text-sm dark:dark:text-gray-400">
-                        Sign Up with social accounts
-                    </p>
-                    <div className="h-px flex-1 dark:dark:bg-gray-700 sm:w-16" />
-                </div>
-                <div className="flex justify-center space-x-4">
-                    <button
-                        type="button"
-                        aria-label="Log in with Google"
-                        className="rounded-sm p-3"
-                    >
-                        <FaGoogle />
-                    </button>
-                    <button
-                        type="button"
-                        aria-label="Log in with Twitter"
-                        className="rounded-sm p-3"
-                    >
-                        <FaTwitter />
-                    </button>
-                    <button
-                        type="button"
-                        aria-label="Log in with GitHub"
-                        className="rounded-sm p-3"
-                    >
-                        <FaGithub />
-                    </button>
-                    <button
-                        type="button"
-                        aria-label="Log in with Facebook"
-                        className="rounded-sm p-3"
-                    >
-                        <FaFacebook />
-                    </button>
-                </div>
+
                 <p className="text-center text-xs dark:dark:text-gray-400 sm:px-6">
                     Already have an account?
                     <Link
@@ -217,4 +158,4 @@ const SignUp = () => {
     );
 };
 
-export default SignUp;
+export default Profile;

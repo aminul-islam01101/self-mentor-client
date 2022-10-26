@@ -13,6 +13,7 @@ import Blogs from '../pages/Blogs/Blogs';
 import CourseCategory from '../pages/Courses/CategoryDetails';
 import CourseDetails from '../pages/Courses/CourseDetails/CourseDetails';
 import CoursePurchase from '../pages/Courses/CourseDetails/CoursePurchase';
+import Profile from '../components/Profile';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -50,6 +51,14 @@ const router = createBrowserRouter(
                 }
             />
 
+            <Route
+                path="/profile"
+                element={
+                    <ProtectedRoute>
+                        <Profile />
+                    </ProtectedRoute>
+                }
+            />
             <Route path="/faq" element={<Faq />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/login" element={<Login />} />
