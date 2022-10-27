@@ -71,7 +71,7 @@ const SignUp = () => {
 
             return;
         }
-        toast.error('signed up successfully');
+        toast.success('signed up successfully');
         setError('signed up successfully');
 
         // createUser functionality
