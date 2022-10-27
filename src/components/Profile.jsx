@@ -4,7 +4,6 @@
 import { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
 
-import { Link } from 'react-router-dom';
 import AuthContext from '../Contexts/AuthContext';
 import NoImage from '../assets/images/Image_not_available.png';
 
@@ -68,7 +67,7 @@ const Profile = () => {
     };
 
     return (
-        <div className="grid min-h-90v place-items-center ">
+        <div className="grid min-h-90v place-items-center my-20 ">
             <div className="card card-side bg-base-100 shadow-xl">
                 <div className="avatar p-5">
                     <div className=" w-36 h-36 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -80,15 +79,11 @@ const Profile = () => {
                         <h2 className="card-title">Hi, {user.displayName}</h2>
                     )) || <p>User Name: Not available </p>}
 
-                    <p>email:{user.email}</p>
-                    <p>Phone Number:{user.phoneNumber || 'Not Available'}</p>
+                    <p>email: {user.email}</p>
+                    <p>Phone Number: {user.phoneNumber || 'Not Available'}</p>
 
-                    <div className="card-actions justify-end">
-                        <button
-                            onClick={handleUpdateClick}
-                            type="button"
-                            className="btn btn-primary"
-                        >
+                    <div className="card-actions justify-end mt-3">
+                        <button onClick={handleUpdateClick} type="button" className="button">
                             Update Profile
                         </button>
                     </div>
@@ -96,7 +91,7 @@ const Profile = () => {
             </div>
 
             {updateProfile && (
-                <div className="w-full max-w-md space-y-3 rounded-xl p-8 dark:dark:bg-gray-900 dark:dark:text-gray-100">
+                <div className="w-full max-w-md space-y-3 rounded-xl p-8 bg-gray-300 mt-16 dark:bg-gray-900 dark:text-gray-100">
                     {/* user profile  top card */}
 
                     <h1>{error}</h1>
@@ -106,7 +101,7 @@ const Profile = () => {
                         className="ng-untouched ng-pristine ng-valid space-y-6"
                     >
                         <div className="space-y-1 text-sm">
-                            <label htmlFor="email" className="block dark:dark:text-gray-400">
+                            <label htmlFor="email" className="block dark:text-gray-400">
                                 email
                                 <input
                                     defaultValue={user.email}
@@ -115,36 +110,36 @@ const Profile = () => {
                                     name="email"
                                     id="email"
                                     placeholder="write your email"
-                                    className="w-full rounded-md px-4 py-3 dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
+                                    className="w-full rounded-md px-4 py-3 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
                                 />
                             </label>
                         </div>
                         <div className="space-y-1 text-sm">
-                            <label htmlFor="names" className="block dark:dark:text-gray-400">
-                                Names
+                            <label htmlFor="names" className="block dark:text-gray-400">
+                                Name
                                 <input
                                     onChange={onFieldChange}
                                     name="names"
                                     id="names"
                                     placeholder="write your name"
-                                    className="w-full rounded-md px-4 py-3 dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
+                                    className="w-full rounded-md px-4 py-3 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
                                 />
                             </label>
                         </div>
                         <div className="space-y-1 text-sm">
-                            <label htmlFor="url" className="block dark:dark:text-gray-400">
-                                url
+                            <label htmlFor="url" className="block dark:text-gray-400">
+                                Photo url
                                 <input
                                     onChange={onFieldChange}
                                     name="photoURL"
                                     id="url"
-                                    placeholder="write your url"
-                                    className="w-full rounded-md px-4 py-3 dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
+                                    placeholder="insert your Photo url"
+                                    className="w-full rounded-md px-4 py-3 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
                                 />
                             </label>
                         </div>
                         <div className="space-y-1 text-sm">
-                            <label htmlFor="names" className="block dark:dark:text-gray-400">
+                            <label htmlFor="names" className="block dark:text-gray-400">
                                 Phone Number
                                 <input
                                     type="number"
@@ -152,13 +147,13 @@ const Profile = () => {
                                     name="phoneNumber"
                                     id="phoneNumber"
                                     placeholder="write your Phone Number"
-                                    className="w-full rounded-md px-4 py-3 dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
+                                    className="w-full rounded-md px-4 py-3 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
                                 />
                             </label>
                         </div>
 
                         <div className="space-y-1 text-sm">
-                            <label htmlFor="conditions" className="block dark:dark:text-gray-400">
+                            <label htmlFor="conditions" className="block dark:text-gray-400">
                                 I agree to the terms and conditions
                                 <input
                                     type="checkbox"
@@ -170,22 +165,11 @@ const Profile = () => {
                         </div>
                         <button
                             type="submit"
-                            className="block w-full rounded-sm p-3 text-center dark:bg-violet-400 dark:text-gray-900"
+                            className="block w-full rounded-sm p-3 text-center button"
                         >
-                            Update
+                            Update Profile
                         </button>
                     </form>
-
-                    <p className="text-center text-xs dark:dark:text-gray-400 sm:px-6">
-                        Already have an account?
-                        <Link
-                            to="/login"
-                            rel="noopener noreferrer"
-                            className="underline dark:dark:text-gray-100"
-                        >
-                            Login
-                        </Link>
-                    </p>
                 </div>
             )}
         </div>

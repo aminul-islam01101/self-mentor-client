@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/self-closing-comp */
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { FaFacebook, FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa';
 import Logo from '../assets/images/logo.png';
 
@@ -19,41 +19,28 @@ const Footer = () => (
                             </NavLink>
                         </div>
 
-                        <div className="mt-12 space-y-4 ">
+                        <div className="my-5 space-y-4 ">
                             <div className="text-center lg:text-left">
                                 <div className="grid place-items-center">
                                     <p className="text-lg font-medium text-white">Helpful Links</p>
                                     <nav aria-label=" Nav" className="mt-4">
                                         <ul className="space-y-1.5 text-sm">
                                             <li>
-                                                <a
-                                                    className="text-white transition hover:text-white/75"
-                                                    href="/"
+                                                <Link
+                                                    to="/blogs"
+                                                    className="text-white transition underline hover:text-white/75"
                                                 >
-                                                    FAQs
-                                                </a>
+                                                    Blogs
+                                                </Link>
                                             </li>
                                             <li>
-                                                <a
-                                                    className="text-white transition hover:text-white/75"
+                                                <Link
+                                                    to="/faq"
+                                                    className="text-white transition underline hover:text-white/75"
                                                     href="/"
                                                 >
                                                     Support
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a
-                                                    className="group flex justify-center gap-1.5 lg:justify-start"
-                                                    href="/"
-                                                >
-                                                    <span className="text-white transition group-hover:text-white/75">
-                                                        Live Chat
-                                                    </span>
-                                                    <span className="relative flex h-2 w-2">
-                                                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75"></span>
-                                                        <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-500"></span>
-                                                    </span>
-                                                </a>
+                                                </Link>
                                             </li>
                                         </ul>
                                     </nav>
@@ -74,7 +61,7 @@ const Footer = () => (
                         </div>
 
                         <div className="grid justify-center gap-10 text-center ">
-                            <div className=" mt-10">
+                            <div className=" my-4">
                                 <p className="text-lg font-medium text-white">Follow us</p>
 
                                 <nav aria-label="Footer Services Nav" className="mt-4">
@@ -113,35 +100,8 @@ const Footer = () => (
                             </div>
                         </div>
 
-                        <div className="mt-16 border-t border-gray-800 pt-8 text-sm text-white lg:mt-24">
-                            <p className="text-center lg:text-left">
-                                <a
-                                    className="inline-block text-white underline transition hover:text-white/75"
-                                    href="/"
-                                >
-                                    Privacy Policy
-                                </a>
-
-                                <span>&middot;</span>
-
-                                <a
-                                    className="inline-block text-white underline transition hover:text-white/75"
-                                    href="/"
-                                >
-                                    Terms & Conditions
-                                </a>
-
-                                <span>&middot;</span>
-
-                                <a
-                                    className="inline-block text-white underline transition hover:text-white/75"
-                                    href="/"
-                                >
-                                    Cookies
-                                </a>
-                            </p>
-
-                            <p className="mt-4 text-center lg:text-left">
+                        <div className=" border-t border-gray-800 text-sm text-white lg:mt-24">
+                            <p className="p-2  text-center lg:text-left">
                                 &copy; 2022 codereality.com. All rights reserved.
                             </p>
                         </div>

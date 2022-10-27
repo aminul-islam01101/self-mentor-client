@@ -9,7 +9,7 @@ import Courses from '../pages/Courses/Courses';
 import Root from './Root';
 import ProtectedRoute from './ProtectedRoute';
 
-import Faq from '../pages/Home/Faq';
+import Faq from '../pages/Support';
 import Blogs from '../pages/Blogs/Blogs';
 import CourseCategory from '../pages/Courses/CategoryDetails';
 import CourseDetails from '../pages/Courses/CourseDetails/CourseDetails';
