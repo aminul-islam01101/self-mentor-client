@@ -41,7 +41,7 @@ const CourseDetails = () => {
                         <figure>
                             <img src={image_url} alt="" />
                         </figure>
-                        <div className='p-6 space-y-3'>
+                        <div className="p-6 space-y-3">
                             <h3 className="text-3xl font-semibold">{courseTitle}</h3>
                             <div>
                                 <small className="text-end">Created by {name}</small>
@@ -98,13 +98,15 @@ const CourseDetails = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex gap-3 flex-wrap justify-center
-                    sm:justify-between mt-10 p-6 items-center">
+                    <div
+                        className="flex gap-3 flex-wrap justify-center
+                    sm:justify-between mt-10 p-6 items-center"
+                    >
                         <h4 className="text-xl font-bol "> About Course</h4>
                         <div>
-                            <Pdf targetRef={ref} filename="code-example.pdf">
+                            <Pdf targetRef={ref} filename="course-summery.pdf">
                                 {({ toPdf }) => (
-                                    <button type="button" className='button' onClick={toPdf}>
+                                    <button type="button" className="button" onClick={toPdf}>
                                         <div className="flex items-center gap-2">
                                             <AiOutlineDownload /> Course summery
                                         </div>

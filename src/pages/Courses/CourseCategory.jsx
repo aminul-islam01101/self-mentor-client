@@ -14,12 +14,12 @@ const Aside = () => {
     }, []);
 
     return (
-        <aside className='p-6'>
+        <aside className="p-6">
             <h4>All Category: {categories.length}</h4>
             <div className="grid ">
                 <div className=" flex flex-wrap gap-6  p-6">
                     {categories.map((category) => (
-                        <p className="hover:underline" key={category.id}>
+                        <p className="hover:underline " key={category.id}>
                             <Link to={`/courses/category/${category.id}`}>{category.name}</Link>
                         </p>
                     ))}

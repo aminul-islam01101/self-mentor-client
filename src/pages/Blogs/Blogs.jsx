@@ -2,7 +2,7 @@
 import React from 'react';
 
 const Blogs = () => (
-    <div>
+    <div className="mb-10">
         <section className="dark:bg-gray-800 dark:text-gray-100">
             <div className="container max-w-6xl p-6 mx-auto space-y-6 sm:space-y-12">
                 <div
@@ -147,6 +147,41 @@ const Blogs = () => (
                             low-level I/O API.
                         </p>
                     </div>
+                </div>
+            </div>
+
+            <div>
+                <div className="my-10">
+                    <section className="p-6 md:p-12 text-center md:text-left shadow-lg rounded-md">
+                        <div className="flex justify-center">
+                            <div className="max-w-3xl">
+                                <div className="block p-6 rounded-lg shadow-lg bg-white m-4">
+                                    <div className="md:flex md:flex-row items-center ">
+                                        <div className="md:w-96 w-36 flex justify-center items-center mb-6 lg:mb-0 mx-auto md:mx-0">
+                                            <img
+                                                src="/author.jpg"
+                                                className="rounded-full shadow-md"
+                                                alt="avatar"
+                                            />
+                                        </div>
+                                        <div className="md:ml-6">
+                                            <p className="text-gray-500 font-light mb-6">
+                                                Hei, I am Aminul Islam. Currently Working in TC-39,
+                                                writing about javascript core concept for several
+                                                years.
+                                            </p>
+                                            <p className="font-semibold text-xl mb-2 text-gray-800">
+                                                Author: Aminul Islam
+                                            </p>
+                                            <p className="font-semibold text-gray-500 mb-0">
+                                                Senior Programmer, TC-39
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </section>
