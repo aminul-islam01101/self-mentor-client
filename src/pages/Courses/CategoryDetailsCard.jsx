@@ -16,7 +16,7 @@ const CategoryDetailsCard = ({ singleCourseData }) => {
 
     return (
         <div>
-            <div className="card w-full glass h-full">
+            <div className="card  w-full glass h-full">
                 <figure>
                     <img src={thumbnail_url} alt="car!" />
                 </figure>
@@ -25,17 +25,19 @@ const CategoryDetailsCard = ({ singleCourseData }) => {
                         <h2 className="font-bold text-lg">{courseTitle}</h2>
                         <small className="text-end">----by {name}</small>
                     </div>
-                    <div className="flex justify-between gap-3">
-                        <p className="text-yellow-600 flex items-center gap-2">
+                    <div className="flex justify-between flex-wrap gap-3">
+                        <p className="text-yellow-700 flex items-center gap-2">
                             <AiTwotoneStar />
                             {point}
                             <span>({ratingsGiven})</span>
                         </p>
                         <div className="flex ">
-                            <span className="px-4 py-1 text-xs whitespace-nowrap bg-yellow-400 text-center">{tags}</span>
+                            <span className="px-4 py-1 text-xs whitespace-nowrap bg-yellow-400 text-center">
+                                {tags}
+                            </span>
                         </div>
                     </div>
-                    <p className='text-xs'>
+                    <p className="text-xs">
                         {hours} total hours | {lectures} lectures | {level}
                     </p>
 

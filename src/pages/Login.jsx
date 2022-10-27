@@ -1,8 +1,10 @@
+/* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { FaFacebook, FaGithub, FaGoogle, FaTwitter } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
+import { FcGoogle } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AuthContext from '../Contexts/AuthContext';
 
@@ -11,6 +13,7 @@ const Login = () => {
         email: '',
         password: '',
     });
+    const [error, setError] = useState(null);
 
     const { signIn, sendPassResetEmail, setLoading, googleSignIn, githubSignIn } =
         useContext(AuthContext);
@@ -33,12 +36,15 @@ const Login = () => {
                 const { user } = result;
                 console.log(user);
                 form.reset();
-
+                setError('');
                 user.emailVerified
                     ? navigate(from, { replace: true })
-                    : toast.error('not verified');
+                    : toast.error('Please verify your email address.');
             })
-            .catch((error) => console.error(error))
+            .catch((error) => {
+                console.error(error);
+                setError(error.message);
+            })
             .finally(() => {
                 setLoading(false);
             });
@@ -52,8 +58,8 @@ const Login = () => {
             .then(() => {
                 toast.success('reset email sent');
             })
-            .catch((error) => {
-                console.error(error);
+            .catch((er) => {
+                console.error(er);
             });
     };
     // handle google sign in
@@ -64,8 +70,8 @@ const Login = () => {
 
                 user.emailVerified && navigate(from, { replace: true });
             })
-            .catch((error) => {
-                console.error(error);
+            .catch((errors) => {
+                console.error(errors);
             })
             .finally(() => {
                 setLoading(false);
@@ -80,8 +86,8 @@ const Login = () => {
 
                 user?.uid && navigate(from, { replace: true });
             })
-            .catch((error) => {
-                console.error(error);
+            .catch((err) => {
+                console.error(err);
             })
             .finally(() => {
                 setLoading(false);
@@ -89,15 +95,16 @@ const Login = () => {
     };
 
     return (
-        <div className="grid min-h-90v place-items-center ">
-            <div className="w-full max-w-md space-y-3 rounded-xl p-8 dark:dark:bg-gray-900 dark:dark:text-gray-100">
+        <div className="grid min-h-90v place-items-center my-36 ">
+            <h2 className="text-xl text-rose-600 font-bold my-10">{error}</h2>
+            <div className="w-full max-w-md space-y-3 rounded-xl p-8 bg-slate-300 dark:bg-gray-900 dark:text-gray-100">
                 <h1 className="text-center text-2xl font-bold">Login</h1>
                 <form
                     onSubmit={handleSubmit}
                     className="ng-untouched ng-pristine ng-valid space-y-6"
                 >
                     <div className="space-y-1 text-sm">
-                        <label htmlFor="username" className="block dark:dark:text-gray-400">
+                        <label htmlFor="username" className="block dark:text-gray-400">
                             email
                             <input
                                 onChange={onFieldChange}
@@ -105,13 +112,13 @@ const Login = () => {
                                 name="email"
                                 id="email"
                                 placeholder="write your email"
-                                className="w-full rounded-md px-4 py-3 dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
+                                className="w-full rounded-md px-4 py-3 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
                                 required
                             />
                         </label>
                     </div>
                     <div className="space-y-1 text-sm">
-                        <label htmlFor="password" className="block dark:dark:text-gray-400">
+                        <label htmlFor="password" className="block dark:text-gray-400">
                             Password
                             <input
                                 onChange={onFieldChange}
@@ -119,69 +126,54 @@ const Login = () => {
                                 name="password"
                                 id="password"
                                 placeholder="Password"
-                                className="w-full rounded-md px-4 py-3 dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
+                                className="w-full rounded-md px-4 py-3 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
                                 required
                             />
                         </label>
                     </div>
-                    <div className="flex justify-end text-xs dark:dark:text-gray-400">
-                        Forgot Password? please
-                        <button type="button" className="button" onClick={handleForgetPass}>
+                    <div className="flex justify-end text-xs dark:text-gray-400">
+                        Forgot Password?
+                        <button type="button" className="underline" onClick={handleForgetPass}>
+                            {' '}
                             Reset
                         </button>
                     </div>
-                    <button
-                        type="submit"
-                        className="block w-full rounded-sm p-3 text-center dark:dark:bg-violet-400 dark:dark:text-gray-900"
-                    >
+                    <button type="submit" className="button w-full rounded-sm p-3 text-center">
                         Login
                     </button>
                 </form>
                 <div className="flex items-center space-x-1 pt-4">
-                    <div className="h-px flex-1 dark:dark:bg-gray-700 sm:w-16" />
-                    <p className="px-3 text-sm dark:dark:text-gray-400">
+                    <div className="h-px flex-1 dark:bg-gray-700 sm:w-16" />
+                    <p className="px-3 text-sm dark:text-gray-400">
                         Login with social accounts
                     </p>
-                    <div className="h-px flex-1 dark:dark:bg-gray-700 sm:w-16" />
+                    <div className="h-px flex-1 dark:bg-gray-700 sm:w-16" />
                 </div>
                 <div className="flex justify-center space-x-4">
                     <button
                         onClick={handleGoogleSignIn}
                         type="button"
                         aria-label="Log in with Google"
-                        className="rounded-sm p-3"
+                        className="rounded-sm  p-3 px-4 py-2 dark:bg-transparent bg-gray-400"
                     >
-                        <FaGoogle />
+                        <FcGoogle />
                     </button>
-                    <button
-                        type="button"
-                        aria-label="Log in with Twitter"
-                        className="rounded-sm p-3"
-                    >
-                        <FaTwitter />
-                    </button>
+
                     <button
                         onClick={handleGithubSignIn}
                         type="button"
                         aria-label="Log in with GitHub"
-                        className="rounded-sm p-3"
+                        className="rounded-sm p-3 px-4 py-2 bg-gray-400  dark:bg-transparent"
                     >
                         <FaGithub />
                     </button>
-                    <button
-                        type="button"
-                        aria-label="Log in with Facebook"
-                        className="rounded-sm p-3"
-                    >
-                        <FaFacebook />
-                    </button>
                 </div>
-                <p className="text-center text-xs dark:dark:text-gray-400 sm:px-6">
+                <p className="text-center text-xs dark:text-gray-400 sm:px-6">
                     Dont&#39;s have an account?
                     <Link
                         to="/signup"
                         rel="noopener noreferrer"
-                        className="underline dark:dark:text-gray-100"
+                        className="underline dark:text-gray-100"
                     >
                         Sign up
                     </Link>

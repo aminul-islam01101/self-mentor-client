@@ -6,18 +6,20 @@ const Aside = () => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
+        setCategories([]);
         fetch('https://self-mentor-server.vercel.app/category')
             .then((res) => res.json())
+
             .then((data) => setCategories(data));
     }, []);
 
     return (
-        <aside>
+        <aside className='p-6'>
             <h4>All Category: {categories.length}</h4>
-            <div className="grid grid-cols-[1fr_3fr]">
-                <div>
+            <div className="grid ">
+                <div className=" flex flex-wrap gap-6  p-6">
                     {categories.map((category) => (
-                        <p key={category.id}>
+                        <p className="hover:underline" key={category.id}>
                             <Link to={`/courses/category/${category.id}`}>{category.name}</Link>
                         </p>
                     ))}

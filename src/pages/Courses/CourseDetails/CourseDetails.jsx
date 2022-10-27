@@ -22,14 +22,14 @@ const CourseDetails = () => {
 
         totalEnrolled,
         ratings: { point, ratingsGiven },
-        stats: { hours, lectures, level, tags },
-        author: { name, published_date, LastUpdated, },
+        stats: { hours, lectures, level, tags, Language },
+        author: { name, published_date, LastUpdated },
         image_url,
         details_1,
         details_2,
-       
+
         keywords,
-        language,
+
         bullets,
     } = singleCourseData;
 
@@ -41,53 +41,56 @@ const CourseDetails = () => {
                         <figure>
                             <img src={image_url} alt="" />
                         </figure>
-                        <h3 className="text-3xl font-semibold">{courseTitle}</h3>
-                        <div>
-                            <small className="text-end">Created by {name}</small>
-                        </div>
-                        <div className="flex justify-between gap-3">
-                            <p className="text-yellow-600 flex items-center gap-2">
-                                <AiTwotoneStar />
-                                {point}
-                                <span>({ratingsGiven})</span>
-                            </p>
-                            <span className="text-yellow-600 ">
-                                {totalEnrolled} Learners Enrolled
-                            </span>
-                            <div className="flex ">
-                                <span className="px-4 py-1 text-xs whitespace-nowrap bg-yellow-500 text-black text-center">
-                                    {tags}
-                                </span>
+                        <div className='p-6 space-y-3'>
+                            <h3 className="text-3xl font-semibold">{courseTitle}</h3>
+                            <div>
+                                <small className="text-end">Created by {name}</small>
                             </div>
+                            <div className="flex justify-between gap-3 flex-wrap items-center">
+                                <p className="text-yellow-600 flex items-center gap-2">
+                                    <AiTwotoneStar />
+                                    {point}
+                                    <span>({ratingsGiven})</span>
+                                </p>
+                                <span className="text-yellow-600 ">
+                                    {totalEnrolled} Learners Enrolled
+                                </span>
+                                <div className="flex ">
+                                    <span className="px-4 py-1 text-xs whitespace-nowrap bg-yellow-500 text-black text-center">
+                                        {tags}
+                                    </span>
+                                </div>
+                            </div>
+                            <p className="text-xs">
+                                {hours} Total hours | {lectures} Lectures | {level} | Mode:
+                                {Language}
+                            </p>
                         </div>
-                        <p className="text-xs">
-                            {hours} total hours | {lectures} lectures | {level} | mode:{language}
-                        </p>
                     </div>
-                    <div className="flex items-center p-3 space-x-3">
+                    <div className="flex flex-wrap gap-10 items-center p-6 space-y-3 justify-center md:justify-start">
                         <img
                             alt=""
                             src="https://source.unsplash.com/100x100/?portrait"
-                            className="object-cover w-12 h-12 rounded-full shadow dark:bg-gray-500"
+                            className="object-cover w-20 h-20 rounded-full shadow dark:bg-gray-500"
                         />
                         <div className="space-y-1">
-                            <div className="text-sm">
-                                <span className="flex gap-2 items-center">
+                            <div className="text-sm ">
+                                <span className="flex gap-2 items-center mb-3">
                                     <BsCalendar2Date />
                                     <span>Published Date :</span>
                                     {published_date}
                                 </span>
-                                <span className="flex gap-2 items-center">
+                                <span className="flex gap-2 items-center mb-3">
                                     <BsCalendar2Date />
                                     <span>Last Updated :</span>
                                     {LastUpdated}
                                 </span>
                             </div>
-                            <div className="flex flex-wrap space-x-3">
+                            <div className="flex flex-wrap mt-5 gap-3">
                                 {keywords.map((keyword) => (
                                     <span
                                         key={Math.random()}
-                                        className="inline-block px-2 py-1 text-sm font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900"
+                                        className="inline-block px-2 py-1 text-sm font-semibold rounded-md bg-teal-500 dark:text-gray-900"
                                     >
                                         {keyword}
                                     </span>
@@ -95,12 +98,13 @@ const CourseDetails = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-between mt-10 p-6 items-center">
+                    <div className="flex gap-3 flex-wrap justify-center
+                    sm:justify-between mt-10 p-6 items-center">
                         <h4 className="text-xl font-bol "> About Course</h4>
                         <div>
                             <Pdf targetRef={ref} filename="code-example.pdf">
                                 {({ toPdf }) => (
-                                    <button type="button" onClick={toPdf}>
+                                    <button type="button" className='button' onClick={toPdf}>
                                         <div className="flex items-center gap-2">
                                             <AiOutlineDownload /> Course summery
                                         </div>
@@ -129,11 +133,11 @@ const CourseDetails = () => {
                     </div>
                     <div className="flex flex-col items-center p-20">
                         <Link to={`/purchase/${id}`}>
-                            <button type="button" className="button px-36 block">
+                            <button type="button" className="button sm:px-36 block">
                                 Get Premium access
                             </button>
                         </Link>
-                        <div className="flex gap-10 ">
+                        <div className="flex flex-col sm:flex-row sm:gap-10 flex-wrap ">
                             <small className="">* Lifetime access</small>
                             <small className="">* 30 days Money back access</small>
                         </div>

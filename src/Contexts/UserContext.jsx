@@ -45,15 +45,13 @@ const UserContext = ({ children }) => {
     const sendPassResetEmail = (email) => sendPasswordResetEmail(auth, email);
 
     // update profile functionality
-    const updateUserProfile = (profile) => {
-        setLoading(true);
-        return updateProfile(auth.currentUser, profile);
-    };
+    const updateUserProfile = (profile) => updateProfile(auth.currentUser, profile);
 
     // useEffect observer
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
             if (
+                firebaseUser === null ||
                 firebaseUser?.emailVerified ||
                 (firebaseUser?.providerData[0]?.providerId === 'github.com' && firebaseUser?.uid)
             ) {
@@ -62,9 +60,9 @@ const UserContext = ({ children }) => {
             // if (firebaseUser.providerData[0].providerId === 'github.com') {
             //     setUser(firebaseUser);
             // }
-            else {
-                setUser(null);
-            }
+            // else {
+            //     setUser(null);
+            // }
 
             setLoading(false);
         });
