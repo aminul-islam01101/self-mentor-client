@@ -6,7 +6,7 @@ import Testimonials from './Testimonials';
 
 export default function Home() {
     return (
-        <div className="space-y-20">
+        <div className="space-y-20 mb-16">
             <Banner />
             <Features />
             <Stats />
