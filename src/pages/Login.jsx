@@ -56,7 +56,7 @@ const Login = () => {
         }
         sendPassResetEmail(email)
             .then(() => {
-                toast.success('reset email sent');
+                toast.success('reset email sent.Please check your email');
             })
             .catch((er) => {
                 console.error(er);
@@ -144,9 +144,7 @@ const Login = () => {
                 </form>
                 <div className="flex items-center space-x-1 pt-4">
                     <div className="h-px flex-1 dark:bg-gray-700 sm:w-16" />
-                    <p className="px-3 text-sm dark:text-gray-400">
-                        Login with social accounts
-                    </p>
+                    <p className="px-3 text-sm dark:text-gray-400">Login with social accounts</p>
                     <div className="h-px flex-1 dark:bg-gray-700 sm:w-16" />
                 </div>
                 <div className="flex justify-center space-x-4">

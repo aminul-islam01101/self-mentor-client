@@ -21,7 +21,7 @@ const SignUp = () => {
     const location = useLocation();
 
     const [error, setError] = useState(null);
-    const { user: fUser, createUser, verifyMail, updateUserProfile } = useContext(AuthContext);
+    const { createUser, verifyMail, updateUserProfile } = useContext(AuthContext);
     const from = location.state?.from?.pathname || '/';
 
     // Input field onChange event handler
@@ -60,20 +60,19 @@ const SignUp = () => {
         // password validation
 
         if (password.length < 6) {
-            setError('password must be 6 ch');
-            alert('password must be 6 ch');
+            setError('password must be 6 character');
+            toast.error('password must be 6 character');
 
             return;
         }
         if (password !== confirmPassword) {
             setError('password did not match');
-            alert('pass did not match');
+            toast.error('password did not match');
 
             return;
         }
-
+        toast.error('signed up successfully');
         setError('signed up successfully');
-        alert('signed up successfully');
 
         // createUser functionality
         createUser(email, password)
@@ -88,12 +87,11 @@ const SignUp = () => {
             })
             .catch((err) => console.error(err));
     };
-    console.log(fUser);
 
     return (
         <div className="grid min-h-90v place-items-center my-36 ">
             <div className="w-full max-w-md space-y-3 rounded-xl p-8 dark:bg-gray-900 dark:text-gray-100 bg-slate-300">
-                <h1>{error}</h1>
+                <h1 className="text-red-500">{error}</h1>
                 <h1 className="text-center text-2xl font-bold">Sign-up</h1>
                 <form onSubmit={onSubmit} className="ng-untouched ng-pristine ng-valid space-y-6">
                     <div className="space-y-1 text-sm">
@@ -138,7 +136,7 @@ const SignUp = () => {
                         </label>
                     </div>
                     {/* password */}
-                   
+
                     <div className="space-y-1 text-sm">
                         <label htmlFor="password" className="block dark:text-gray-400">
                             Password
