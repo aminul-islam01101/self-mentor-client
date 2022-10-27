@@ -9,8 +9,8 @@ const Footer = () => (
     <div>
         <footer aria-label="" className="bg-gray-400 dark:bg-gray-600">
             <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-                <div className="lg:grid lg:grid-cols-2">
-                    <div className="border-b border-gray-800  py-5 lg:order-last lg:border-b-0 lg:border-l lg:pl-12">
+                <div className="sm:grid sm:grid-cols-2">
+                    <div className="border-b border-gray-800  py-2 lg:order-last lg:border-b-0 lg:border-l lg:pl-12">
                         <div className="flex justify-center text-teal-400 dark:text-teal-300 lg:hidden">
                             {/* logo place */}
                             <NavLink to="/" className="btn btn-ghost normal-case flex text-xl">
@@ -19,7 +19,7 @@ const Footer = () => (
                             </NavLink>
                         </div>
 
-                        <div className="my-5 space-y-4 ">
+                        <div className="my-10 ">
                             <div className="text-center lg:text-left">
                                 <div className="grid place-items-center">
                                     <p className="text-lg font-medium text-white">Helpful Links</p>

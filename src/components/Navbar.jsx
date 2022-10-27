@@ -125,7 +125,7 @@ const Navbar = () => {
                     <ul className=" md:flex md:flex-row p-0 hidden  gap-1 ">
                         {pages.map((page) => (
                             <li
-                                className=" rounded px-1 py-2 hover:bg-[#d3ecf3] transition ease-in-out delay-150 hover:shadow-lg  "
+                                className=" rounded px-1 py-2 hover:dark:text-black hover:bg-[#d3ecf3] transition ease-in-out delay-150 hover:shadow-lg  "
                                 key={page.id}
                             >
                                 <NavLink
