@@ -11,7 +11,7 @@ const Footer = () => (
             <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
                 <div className="lg:grid lg:grid-cols-2">
                     <div className="border-b border-gray-800  py-5 lg:order-last lg:border-b-0 lg:border-l lg:pl-12">
-                        <div className="flex justify-center text-teal-300 lg:hidden">
+                        <div className="flex justify-center text-teal-400 dark:text-teal-300 lg:hidden">
                             {/* logo place */}
                             <NavLink to="/" className="btn btn-ghost normal-case flex text-xl">
                                 <img className="w-8 mr-2" src={Logo} alt="logo" />
