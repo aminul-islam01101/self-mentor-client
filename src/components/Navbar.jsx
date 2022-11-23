@@ -189,7 +189,7 @@ const Navbar = () => {
 
                     {/* ----------------------------- */}
 
-                    {/* dark mood toggler */}
+                    {/* dark mood toggler for nav */}
                     <div
                         className="tooltip hover:tooltip-open tooltip-bottom tooltip-success"
                         data-tip={theme === 'dark' ? 'toggle light' : 'toggle dark'}
